@@ -8,6 +8,7 @@ config();
 
 const app = express(); //initialize express
 const port = process.env.PORT || 5000; //set port
+const path = require('path');
 
 app.use(express.json()); // parse application/json
 
@@ -23,7 +24,8 @@ app.use("/api", loginRouter); //use login router
 app.use("/api", registerRouter); //use register router
 
 app.get("/", async (req, res) => {
-  res.send("The API is up and online :)");
+ // res.send("The API is up and online :)");
+    res.sendFile(path.join(__dirname, '../success.html'));
 });
 
 app.listen(80, () => {

@@ -20,6 +20,7 @@ const cors_1 = __importDefault(require("cors"));
 (0, dotenv_1.config)();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 5000;
+const path = require('path');
 app.use(express_1.default.json());
 app.use((0, cors_1.default)({
     origin: "*",
@@ -27,7 +28,7 @@ app.use((0, cors_1.default)({
 app.use("/api", login_1.loginRouter);
 app.use("/api", register_1.registerRouter);
 app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.send("The API is up and online :)");
+    res.sendFile(path.join(__dirname, '../success.html'));
 }));
 app.listen(80, () => {
     console.log(`Server running on port ${port}`);
